@@ -3,6 +3,6 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/vyper_inventory
-    username: root
-    password: root
+    url: jdbc:mysql://sql6.freesqldatabase.com:3306/sql6490832
+    username: sql6490832
+    password: DQEIVngssp
