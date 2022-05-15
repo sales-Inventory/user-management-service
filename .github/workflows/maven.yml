@@ -41,7 +41,7 @@ jobs:
           service_account_key: ${{secrets.GKE_SA_KEY}}
           project_id: ${{secrets.GKE_PROJECT}}
 
-      - names: Get Sales Inventroy Cluster Credintials
+      - name: Get Sales Inventroy Cluster Credintials
         run: gcloud container cluster get-credintials "$SI_CLUSTER" --zone "SI_ZONE"
 
       - name: Build & push Docker image
