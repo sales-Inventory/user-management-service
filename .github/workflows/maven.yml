@@ -11,6 +11,8 @@ on:
 
 jobs:
   build:
+    env:
+      ACTION_TOKEN: ${{ secrets.ACTION_TOKEN}}
 
     runs-on: ubuntu-latest
 
