@@ -19,8 +19,6 @@ jobs:
     env:
       ACTION_TOKEN: ${{secrets.ACTION_TOKEN}}
 
-  setup-build-publish-deploy:
-    name: Setup Build Publish Deploy
     runs-on: ubuntu-latest
 
     steps:
