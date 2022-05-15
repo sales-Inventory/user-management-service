@@ -10,10 +10,11 @@ on:
     branches: [ master ]
 
 env:
+  PROJECT_ID: ${{secrets.GKE_PROJECT}}
   SI_CLUSTER: sales-inventory
   SI_ZONE: us-central1-c
   DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
-  IMAGE: janithsenanyaka/user-management-service
+  IMAGE: user-management-service
   TAG: latest
 
 jobs:
