@@ -44,8 +44,7 @@ jobs:
           project_id: ${{secrets.GKE_PROJECT}}
 
       - name: Configure Docker
-        run: |-
-          gcloud --quiet auth configure-docker    
+        run: gcloud --quiet auth configure-docker
 
       - name: Get SI Credentials
         run: gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE"
