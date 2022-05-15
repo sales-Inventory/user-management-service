@@ -11,6 +11,6 @@ public class UserController {
 
     @GetMapping("/user")
     public ResponseEntity<String> extractOrdersFromLogicBroker() {
-        return ResponseEntity.ok("hello world!");
+        return ResponseEntity.ok("saranga kari ponnaya");
     }
 }
