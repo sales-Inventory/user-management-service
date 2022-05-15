@@ -11,8 +11,8 @@ on:
 
 env:
   SI_CLUSTER: sales-inventory
-    SI_ZONE: us-central1-c
-    DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
+  SI_ZONE: us-central1-c
+  DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
 
 jobs:
   build:
