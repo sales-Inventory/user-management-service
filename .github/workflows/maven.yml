@@ -58,13 +58,13 @@ jobs:
 #          dockerfile: Dockerfile
 #          username: ${{ secrets.DOCKER_USERNAME }}
 #          password: ${{ secrets.DOCKER_PASSWORD }}
-          - name: Build Docker Image
-            run: |-
-                docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
+      - name: Build Docker Image
+        run: |-
+            docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
 
-          - name: Publish Docker Image to GCR
-            run: |-
-                docker push "gcr.io/$PROJECT_ID/$IMAGE:$TAG"
+      - name: Publish Docker Image to GCR
+        run: |-
+            docker push "gcr.io/$PROJECT_ID/$IMAGE:$TAG"
 
       - name: Set up Kustomize
         run: |-
