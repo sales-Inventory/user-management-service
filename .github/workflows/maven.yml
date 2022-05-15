@@ -43,18 +43,29 @@ jobs:
           service_account_key: ${{secrets.GKE_SA_KEY}}
           project_id: ${{secrets.GKE_PROJECT}}
 
+      - name: Configure Docker
+        run: |-
+          gcloud --quiet auth configure-docker    
+
       - name: Get SI Credentials
         run: gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE"
 
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
-        with:
-          image: janithsenanyaka/user-management-service
-          tags: latest
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+#      - name: Build & push Docker image
+#        uses: mr-smithers-excellent/docker-build-push@v5
+#        with:
+#          image: janithsenanyaka/user-management-service
+#          tags: latest
+#          registry: docker.io
+#          dockerfile: Dockerfile
+#          username: ${{ secrets.DOCKER_USERNAME }}
+#          password: ${{ secrets.DOCKER_PASSWORD }}
+          - name: Build Docker Image
+            run: |-
+                docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
+
+          - name: Publish Docker Image to GCR
+            run: |-
+                docker push "gcr.io/$PROJECT_ID/$IMAGE:$TAG"
 
       - name: Set up Kustomize
         run: |-
@@ -63,7 +74,7 @@ jobs:
 
       - name: Deploy Image to SI cluster
         run: |-
-            ./kustomize edit set image docker.io/PROJECT_ID/IMAGE:TAG=docker.io/$PROJECT_ID/$IMAGE:$TAG
+            ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$TAG
             ./kustomize build . | kubectl apply -f -
             kubectl rollout status deployment/$DEPLOYMENT_NAME
             kubectl get services -o wide          
