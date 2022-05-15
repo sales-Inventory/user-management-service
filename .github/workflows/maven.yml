@@ -9,13 +9,15 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  SI_CLUSTER: sales-inventory
+    SI_ZONE: us-central1-c
+    DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
+
 jobs:
   build:
     env:
       ACTION_TOKEN: ${{secrets.ACTION_TOKEN}}
-      SI_CLUSTER: sales-inventory
-      SI_ZONE: us-central1-c
-      DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
 
   setup-build-publish-deploy:
     names: Setup Build Publish Deploy
