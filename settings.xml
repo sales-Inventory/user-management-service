@@ -16,7 +16,7 @@
                 <repository>
                     <id>github</id>
                     <name>Git hub janith-ch Apache maven packages</name>
-                    <url>https://maven.pkg.github.com/sales-Inventory/common-service</url>
+                    <url>https://maven.pkg.github.com/sales-Inventory/*</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
