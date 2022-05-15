@@ -44,8 +44,7 @@ jobs:
           project_id: ${{secrets.GKE_PROJECT}}
 
       - name: Get SI Credentials
-          run: |-
-            gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE"
+        run: gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE"
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
