@@ -16,8 +16,6 @@ env:
   DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
   IMAGE: user-management-service
   TAG: latest
-variables:
-  ROLLOUT_RESOURCE_TYPE: deployment
 
 jobs:
   build:
