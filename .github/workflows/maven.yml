@@ -13,6 +13,8 @@ env:
   SI_CLUSTER: sales-inventory
   SI_ZONE: us-central1-c
   DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
+  IMAGE: janithsenanyaka/user-management-service
+  TAG: latest
 
 jobs:
   build:
@@ -41,8 +43,9 @@ jobs:
           service_account_key: ${{secrets.GKE_SA_KEY}}
           project_id: ${{secrets.GKE_PROJECT}}
 
-      - name: Get Sales Inventroy Cluster Credintials
-        run: gcloud container cluster get-credintials "$SI_CLUSTER" --zone "$SI_ZONE"
+      - name: Get SI Credentials
+          run: |-
+            gcloud container clusters get-credentials "$SI_CLUSTER" --zone "$SI_ZONE"
 
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
