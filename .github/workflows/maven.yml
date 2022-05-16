@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/kubectl@master
+#      - uses: actions-hub/kubectl@master
         run: --kubeconfig="base64:$KUBE_CONFIG"
 
       - name: Set up JDK 11
