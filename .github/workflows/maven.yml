@@ -13,7 +13,7 @@ env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
   SI_CLUSTER: sales-inventory
   SI_ZONE: us-central1-c
-  DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
+  DEPLOYEMENT_NAME: github-action-sales-inventory
   IMAGE: user-management-service
   TAG: latest
 
@@ -25,13 +25,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: check command
-        run: gcloud container clusters get-credentials sales-inventory --zone=us-central1-c
 
       - uses: actions/checkout@v1
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{secrets.KUBE_CONFIG}}
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
@@ -79,6 +74,18 @@ jobs:
       - name: Publish Docker Image to GCR
         run: |-
             docker push "gcr.io/temporal-genius-312707/user-management-service:prod"
+
+      - name: Set up Kustomize
+        run: |-
+          curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+          chmod u+x ./kustomize
+
+      - name: Deploy Image to GKE cluster
+        run: |-
+          ./kustomize edit set image gcr.io/temporal-genius-312707/user-management-service:prod
+          ./kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          kubectl get services -o wide    
 
       - name: deploy image to cluster
         run: |-
