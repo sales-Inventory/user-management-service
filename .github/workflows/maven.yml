@@ -74,7 +74,7 @@ jobs:
 
       - name: deploy image to cluster
         run: |-
-          --kubeconfig="${KUBE_CONFIG}"
+          - kubectl --kubeconfig="base64:$KUBE_CONFIG"
           - kubectl apply -f deployment.yml 
           - kubectl rollout restart deployment user-management-service
 
