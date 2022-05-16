@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions-hub/kubectl@master
         env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          KUBE_CONFIG: ./config
         with:
           args: get pods
 
