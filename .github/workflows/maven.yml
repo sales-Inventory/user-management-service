@@ -27,8 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions-hub/kubectl@master
-        with:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        env:
+          KUBE_CONFIG: /config
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
