@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions-hub/kubectl@master
         env:
-          KUBE_CONFIG: ./config
+          KUBE_CONFIG: conf/admin.conf
         with:
           args: get pods
 
