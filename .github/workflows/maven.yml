@@ -61,11 +61,11 @@ jobs:
 #          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
         run: |-
-            docker build --tag "gcr.io/user-management-service:prod" .
+            docker build --tag "gcr.io/temporal-genius-312707/user-management-service:prod" .
 
       - name: Publish Docker Image to GCR
         run: |-
-            docker push "gcr.io/user-management-service:prod"
+            docker push "gcr.io/temporal-genius-312707/user-management-service:prod"
 
       - name: deploy image to cluster
         run: |-
