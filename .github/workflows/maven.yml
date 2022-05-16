@@ -68,6 +68,7 @@ jobs:
             docker push "gcr.io/temporal-genius-312707/user-management-service:prod"
 
       - name: deploy image to cluster
+        uses: actions-hub/kubectl@master
         run: |-
           - kubectl apply -f deployment.yml 
           - kubectl rollout restart deployment user-management-service
