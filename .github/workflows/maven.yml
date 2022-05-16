@@ -26,10 +26,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: gcloud config set container/use_application_default_credentials true
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{secrets.KUBE_CONFIG}}
+      - uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@0.1.3
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
