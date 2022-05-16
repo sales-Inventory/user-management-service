@@ -65,7 +65,7 @@ jobs:
 
       - name: Publish Docker Image to GCR
         run: |-
-            docker push "gcr.io/gcr.io/user-management-service:prod"
+            docker push "gcr.io/user-management-service:prod"
 
       - name: deploy image to cluster
         run: |-
