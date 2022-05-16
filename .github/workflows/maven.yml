@@ -16,6 +16,7 @@ env:
   DEPLOYEMENT_NAME: github-action-sales-inventory-deployement
   IMAGE: user-management-service
   TAG: latest
+  KUBE_CONFIG: conf/admin.conf
 
 jobs:
   build:
@@ -27,8 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: conf/admin.conf
+        run: --kubeconfig="base64:$KUBE_CONFIG"
 
       - name: Set up JDK 11
         uses: actions/setup-java@v1
