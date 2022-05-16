@@ -73,8 +73,8 @@ jobs:
 
       - name: deploy image to cluster
         run: |-
-          - kubectl apply -f deployment.yml 
-          - kubectl rollout restart deployment user-management-service
+           kubectl apply -f deployment.yml 
+           kubectl rollout restart deployment user-management-service
 
               
 
