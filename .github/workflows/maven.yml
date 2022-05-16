@@ -25,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: check command
+        run: gcloud container clusters get-credentials sales-inventory --zone=us-central1-c
+
       - uses: actions/checkout@v1
       - uses: actions-hub/kubectl@master
         env:
