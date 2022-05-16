@@ -67,11 +67,11 @@ jobs:
 #          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
         run: |-
-            docker build --tag "gcr.io/temporal-genius-312707/user-management-service:prod" .
+          docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
 
       - name: Publish Docker Image to GCR
         run: |-
-            docker push "gcr.io/temporal-genius-312707/user-management-service:prod"
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:$TAG"
 
       - name: Set up Kustomize
         run: |-
@@ -80,7 +80,7 @@ jobs:
 
       - name: Deploy Image to GKE cluster
         run: |-
-          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG= gcr.io/temporal-genius-312707/user-management-service:prod
+          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG= gcr.io/$PROJECT_ID/$IMAGE:$TAG
           ./kustomize build . | kubectl apply -f -
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide    
