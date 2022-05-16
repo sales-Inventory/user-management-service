@@ -29,6 +29,9 @@ jobs:
       - uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+        with:
+          args: get pods
+
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
