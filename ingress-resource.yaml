@@ -7,10 +7,17 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
+          - path: /api/v1/user-management-service
             pathType: Prefix
             backend:
               service:
                 name: user-management-service
                 port:
+                  number: 80
+          - path: /api/v1/item-management-service
+            pathType: Prefix
+            backend:
+              service:
+               name: item-management-service
+               port:
                   number: 80
